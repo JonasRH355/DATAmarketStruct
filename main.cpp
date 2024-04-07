@@ -36,7 +36,7 @@ int main() {
                 break;
         }
     }
-    retirardaproduto(prateleira,27);
+    retirardaproduto(prateleira,45);
     mostrarProdutos(prateleira);
     return 0;
 }

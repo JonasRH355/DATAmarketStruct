@@ -16,7 +16,6 @@ struct Local{
 };
 
 //Função para inserir um novo no na lista (produto na prateleira)
-
 bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
     Produto *novo = new Produto;
     novo->ID = idNovo;
@@ -68,42 +67,35 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
 
     Produto *aux = localdesejado.comeco;
     while( aux != nullptr && idDesejado != aux->ID ){
-
-
-        if( aux == nullptr ) {return false;}
-
-        if( aux == localdesejado.comeco && aux == localdesejado.fim ){ // Caso 1
-            localdesejado.comeco = nullptr;
-            localdesejado.fim = nullptr;
-            delete aux;
-            return true;
-        }
-        else if( aux == localdesejado.comeco ){ // Caso 2
-            localdesejado.comeco = aux->proximo;
-            localdesejado.comeco->anterior = nullptr;
-            delete aux;
-            return true;
-        }
-        else if( aux == localdesejado.fim ){ // Caso 3
-            Produto *ant = aux->anterior;
-            ant->proximo = nullptr;
-            localdesejado.fim = ant;
-            delete aux;
-            return true;
-        }
-        // Caso 4
-        else if(){
-            Produto *ant = aux->anterior;
-            Produto *prox = aux->proximo;
-            ant->proximo = prox;
-            prox->anterior = ant;
-            delete aux;
-            return true;
-        }
-        else{
-            aux = aux->proximo;
-        }
+        aux = aux->proximo;
     }
+    if( aux == nullptr ) return false;
+
+    if( aux == localdesejado.comeco && aux == localdesejado.fim ){ // Caso 1
+        localdesejado.comeco = nullptr;
+        localdesejado.fim = nullptr;
+        delete aux;
+        return true;
+    }
+    if( aux == localdesejado.comeco ){ // Caso 2
+        localdesejado.comeco = aux->proximo;
+        localdesejado.comeco->anterior = nullptr;
+        delete aux;
+        return true;
+    }
+    Produto *ant = aux->anterior;
+    if( aux == localdesejado.fim ){ // Caso 3
+        ant->proximo = nullptr;
+        localdesejado.fim = ant;
+        delete aux;
+        return true;
+    }
+    // Caso 4
+    Produto *prox = aux->proximo;
+    ant->proximo = prox;
+    prox->anterior = ant;
+    delete aux;
+    return true;
 }
 
 void buscarnanaprateleira(Local lista, int idabuscar){
