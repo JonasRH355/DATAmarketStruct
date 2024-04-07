@@ -21,6 +21,7 @@ bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, fl
     novo->ID = idNovo;
     novo->nome = produntonovo;
     novo->valordoproduto = valordesejado;
+    localdesejado.valortotal = localdesejado.valortotal + valordesejado;
 
     if (localdesejado.comeco == nullptr)
     {
@@ -71,12 +72,14 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
     if( aux == nullptr ) return false;
 
     if( aux == localdesejado.comeco && aux == localdesejado.fim ){ // Caso 1
+        localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
         localdesejado.comeco = nullptr;
         localdesejado.fim = nullptr;
         delete aux;
         return true;
     }
     if( aux == localdesejado.comeco ){ // Caso 2
+        localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
         localdesejado.comeco = aux->proximo;
         localdesejado.comeco->anterior = nullptr;
         delete aux;
@@ -84,6 +87,7 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
     }
     Produto *ant = aux->anterior;
     if( aux == localdesejado.fim ){ // Caso 3
+        localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
         ant->proximo = nullptr;
         localdesejado.fim = ant;
         delete aux;
@@ -91,6 +95,7 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
     }
     // Caso 4
     Produto *prox = aux->proximo;
+    localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
     ant->proximo = prox;
     prox->anterior = ant;
     delete aux;
