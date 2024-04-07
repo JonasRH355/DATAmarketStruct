@@ -157,4 +157,6 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
 //  5.1- CALCULAR CARRINHO
 //  5.2- MOSTRAR ITENS DO CARRINHO
 // 6- GERENTE
+//  6.1 - ajustar produto;
+//  6.2 - inserir novo produto;
 

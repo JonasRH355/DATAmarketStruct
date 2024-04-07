@@ -5,6 +5,7 @@ int main() {
     int i = 0;
     Local prateleira;
     Local carrinho;
+    std::string vendedor = "felix";
     importarProdutos(prateleira,"produtossalvos.txt");
 
     while(i != 1){
@@ -22,7 +23,8 @@ int main() {
                 break;
 
             case 4: // 4-  PAGAR
-                std::cout<<getvalor(carrinho);
+                std::cout<<"Valor total:"<<getvalor(carrinho)<<"\nVendedor: "<<vendedor;
+                mostrarProdutos(carrinho);
                 i++;
                 break;
 
