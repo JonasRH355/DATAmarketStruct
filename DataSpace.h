@@ -62,8 +62,7 @@ bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, fl
     }
 }
 
-template<class PouC>
-bool retirardaproduto(PouC &localdesejado, int idDesejado){
+bool retirardaproduto(Local &localdesejado, int idDesejado){
     if( localdesejado.comeco == nullptr ) return false;
 
     Produto *aux = localdesejado.comeco;
@@ -130,7 +129,6 @@ void mostrarProdutosdaPrat (Local Prateleira){
     }
 }
 
-template<class PouC>
-float getvalor(PouC listadesejada){
+float getvalor(Local listadesejada){
     return listadesejada.valortotal;
 }
