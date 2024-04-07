@@ -35,18 +35,22 @@ bool inserirProdutonocarrinho(Carrinho usuario, Prateleiras camisas){
     while(encontrar != nullptr){
         if(idescolhido == encontrar->ID)
         {
-            inserirProduto(usuario,encontrar->ID,encontrar->objeto,encontrar->valordoproduto);
+            inserirProduto(usuario,idescolhido,encontrar->objeto,encontrar->valordoproduto);
+            retirardaproduto(camisas,idescolhido);
+            return true;
         }
         else{
             encontrar = encontrar->proximo;
         }
 
     }
+    return false;
 }
+
 // 3- RETIRAR UM PRODUTO DO CARRINHO E POR EM UMA PRATELEIRA
 // 4-  PAGAR
 // 5- CLIENTE
 //  5.1- CALCULAR CARRINHO
-//  5.2-
+//  5.2- MOSTRAR ITENS DO CARRINHO
 // 6- GERENTE
 
