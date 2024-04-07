@@ -1,8 +1,8 @@
 // Objetos que estao a venda
 struct Produto {
     Produto *anterior = nullptr;
-    int ID = 0;
-    std::string objeto;
+    int ID;
+    std::string nome;
     float valordoproduto;
     Produto * proximo = nullptr;
 };
@@ -11,15 +11,16 @@ struct Produto {
 struct Local{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;
-    int contprodutos = 0;
+    int tamanho = 0;
     float valortotal = 0;
 };
 
 //Função para inserir um novo no na lista (produto na prateleira)
+
 bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
     Produto *novo = new Produto;
     novo->ID = idNovo;
-    novo->objeto = produntonovo;
+    novo->nome = produntonovo;
     novo->valordoproduto = valordesejado;
     localdesejado.valortotal = localdesejado.valortotal + valordesejado;
 
@@ -27,21 +28,21 @@ bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, fl
     {
         localdesejado.comeco = novo;
         localdesejado.fim = novo;
-        localdesejado.contprodutos++;
+        localdesejado.tamanho++;
         return true;
     }
     else if(idNovo < localdesejado.comeco->ID){
         novo->proximo = localdesejado.comeco;
         localdesejado.comeco->anterior = novo;
         localdesejado.comeco = novo;
-        localdesejado.contprodutos++;
+        localdesejado.tamanho++;
         return true;
     }
     else if (idNovo > localdesejado.fim->ID){
         localdesejado.fim->proximo = novo;
         novo->anterior = localdesejado.fim;
         localdesejado.fim= novo;
-        localdesejado.contprodutos++;
+        localdesejado.tamanho++;
         return true;
     }
     else {
@@ -53,7 +54,7 @@ bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, fl
                 novo->proximo = aux->proximo;
                 aux->proximo = novo;
                 novo->proximo->anterior = novo;
-                localdesejado.contprodutos++;
+                localdesejado.tamanho++;
                 return true;
             }
             aux = aux->proximo;
@@ -67,26 +68,23 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
 
     Produto *aux = localdesejado.comeco;
     while( aux != nullptr && idDesejado != aux->ID ){
-        aux = aux->proximo;
+
 
         if( aux == nullptr ) {return false;}
 
         if( aux == localdesejado.comeco && aux == localdesejado.fim ){ // Caso 1
-            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             localdesejado.comeco = nullptr;
             localdesejado.fim = nullptr;
             delete aux;
             return true;
         }
         else if( aux == localdesejado.comeco ){ // Caso 2
-            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             localdesejado.comeco = aux->proximo;
             localdesejado.comeco->anterior = nullptr;
             delete aux;
             return true;
         }
         else if( aux == localdesejado.fim ){ // Caso 3
-            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             Produto *ant = aux->anterior;
             ant->proximo = nullptr;
             localdesejado.fim = ant;
@@ -94,14 +92,16 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
             return true;
         }
         // Caso 4
-        else {
-            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
+        else if(){
             Produto *ant = aux->anterior;
             Produto *prox = aux->proximo;
             ant->proximo = prox;
             prox->anterior = ant;
             delete aux;
             return true;
+        }
+        else{
+            aux = aux->proximo;
         }
     }
 }
@@ -121,10 +121,10 @@ void buscarnanaprateleira(Local lista, int idabuscar){
 }
 
 //mostra todos os produtos da prateleira escolhida
-void mostrarProdutosdaPrat (Local Prateleira){
+void mostrarProdutos (Local Prateleira){
     Produto *aux = Prateleira.comeco;
     while (aux != nullptr){
-        std::cout<<"\nID: "<<aux->ID<<" | Produto: "<<aux->objeto<<" | Valor: "<< aux->valordoproduto<<"\n";
+        std::cout<<"\nID: "<<aux->ID<<" | Produto: "<<aux->nome<<" | Valor: "<< aux->valordoproduto<<"\n";
         aux= aux->proximo;
     }
 }
