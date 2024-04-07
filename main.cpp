@@ -3,26 +3,35 @@
 
 int main() {
     int i = 0;
-    do{
+    Prateleiras camisas[3];
+    Carrinho usuario;
+    while(i != 1){
         switch (menuprincipal()) {
             case 1:
-                i=0;
+                break;
             case 2:
-                i=0;
+                if(inserirProdutonocarrinho(usuario,camisas[1])){
+                    std::cout<<"Produto posto no carrinho com sucesso";
+                }
+                else{
+                    std::cout<<"não deu botar no carrinho";
+                }
+                break;
             case 3:
-                i=0;
+                break;
             case 4:
-                i=0;
+                break;
             case 5:
-                i=0;
+                break;
             case 6:
-                i=0;
+                break;
             case 7:
-                sair(i);
+                i++;
+                break;
         }
-    }while(i == 1);
+    }
 
-    Prateleiras camisas[3];
+
     inserirProduto(camisas[1],45,"gloria a deus",45.99);
     inserirProduto(camisas[1],27,"gloria a deus",35.99);
     mostrarProdutosdaPrat(camisas[1]);
@@ -32,6 +41,7 @@ int main() {
     else{
         std::cout<<"tem nada não";
     }
+    std::cout<<getvalor(camisas[1]);
 
     return 0;
 }

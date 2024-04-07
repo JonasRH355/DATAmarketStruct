@@ -12,6 +12,7 @@ struct Prateleiras{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;
     int contprodutos = 0;
+    float valortotal = 0;
 };
 
 // Carrinho do usuário
@@ -19,16 +20,17 @@ struct Carrinho{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;
     int contprodutos = 0;
-    int valortotal = 0;
+    float valortotal = 0;
 };
 
 //Função para inserir um novo no na lista (produto na prateleira)
 template<class PouC>
-bool inserirProduto(PouC &localdesejado,int idNovo,char produntonovo[10], float valordesejado){
+bool inserirProduto(PouC &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
     Produto *novo = new Produto;
     novo->ID = idNovo;
     novo->objeto = produntonovo;
     novo->valordoproduto = valordesejado;
+    localdesejado.valortotal = localdesejado.valortotal + valordesejado;
 
     if (localdesejado.comeco == nullptr)
     {
@@ -80,18 +82,21 @@ bool retirardaproduto(PouC &localdesejado, int idDesejado){
         if( aux == nullptr ) {return false;}
 
         if( aux == localdesejado.comeco && aux == localdesejado.fim ){ // Caso 1
+            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             localdesejado.comeco = nullptr;
             localdesejado.fim = nullptr;
             delete aux;
             return true;
         }
         else if( aux == localdesejado.comeco ){ // Caso 2
+            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             localdesejado.comeco = aux->proximo;
             localdesejado.comeco->anterior = nullptr;
             delete aux;
             return true;
         }
         else if( aux == localdesejado.fim ){ // Caso 3
+            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             Produto *ant = aux->anterior;
             ant->proximo = nullptr;
             localdesejado.fim = ant;
@@ -100,6 +105,7 @@ bool retirardaproduto(PouC &localdesejado, int idDesejado){
         }
         // Caso 4
         else {
+            localdesejado.valortotal = localdesejado.valortotal - aux->valordoproduto;
             Produto *ant = aux->anterior;
             Produto *prox = aux->proximo;
             ant->proximo = prox;
@@ -110,19 +116,18 @@ bool retirardaproduto(PouC &localdesejado, int idDesejado){
     }
 }
 
-bool buscarnanaprateleira(Prateleiras lista, std::string nomeabuscar){
+void buscarnanaprateleira(Prateleiras lista, int idabuscar){
     Produto *encontrar = lista.comeco;
     while(encontrar != nullptr){
-        if(nomeabuscar == encontrar->objeto)
+        if(idabuscar == encontrar->ID)
         {
-            return true;
+
         }
         else{
             encontrar = encontrar->proximo;
         }
 
     }
-    return false;
 }
 
 //mostra todos os produtos da prateleira escolhida
@@ -132,4 +137,9 @@ void mostrarProdutosdaPrat (Prateleiras Prateleira){
         std::cout<<"\nID: "<<aux->ID<<" | Produto: "<<aux->objeto<<" | Valor: "<< aux->valordoproduto<<"\n";
         aux= aux->proximo;
     }
+}
+
+template<class PouC>
+float getvalor(PouC listadesejada){
+    return listadesejada.valortotal;
 }

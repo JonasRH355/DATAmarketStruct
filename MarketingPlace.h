@@ -27,16 +27,26 @@ int menuprincipal(){
 //   1.2 - PESQUISAR POR PRECO (menor que)
 //   1.3 - PESQUISAR GERAL
 // 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
+bool inserirProdutonocarrinho(Carrinho usuario, Prateleiras camisas){
+    int idescolhido;
+    std::cout<<"\nQual item você deseja inserir no carrinho? ";
+    std::cin>>idescolhido;
+    Produto *encontrar = camisas.comeco;
+    while(encontrar != nullptr){
+        if(idescolhido == encontrar->ID)
+        {
+            inserirProduto(usuario,encontrar->ID,encontrar->objeto,encontrar->valordoproduto);
+        }
+        else{
+            encontrar = encontrar->proximo;
+        }
+
+    }
+}
 // 3- RETIRAR UM PRODUTO DO CARRINHO E POR EM UMA PRATELEIRA
 // 4-  PAGAR
 // 5- CLIENTE
 //  5.1- CALCULAR CARRINHO
 //  5.2-
 // 6- GERENTE
-//
-
-
-// 7- SAIR
-void sair(int &i)
-{ i++; }
 
