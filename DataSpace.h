@@ -8,15 +8,7 @@ struct Produto {
 };
 
 // locas a ser posto os produtos (linha)
-struct Prateleiras{
-    Produto *comeco = nullptr;
-    Produto *fim = nullptr;
-    int contprodutos = 0;
-    float valortotal = 0;
-};
-
-// Carrinho do usuário
-struct Carrinho{
+struct Local{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;
     int contprodutos = 0;
@@ -24,8 +16,7 @@ struct Carrinho{
 };
 
 //Função para inserir um novo no na lista (produto na prateleira)
-template<class PouC>
-bool inserirProduto(PouC &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
+bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
     Produto *novo = new Produto;
     novo->ID = idNovo;
     novo->objeto = produntonovo;
@@ -116,7 +107,7 @@ bool retirardaproduto(PouC &localdesejado, int idDesejado){
     }
 }
 
-void buscarnanaprateleira(Prateleiras lista, int idabuscar){
+void buscarnanaprateleira(Local lista, int idabuscar){
     Produto *encontrar = lista.comeco;
     while(encontrar != nullptr){
         if(idabuscar == encontrar->ID)
@@ -131,7 +122,7 @@ void buscarnanaprateleira(Prateleiras lista, int idabuscar){
 }
 
 //mostra todos os produtos da prateleira escolhida
-void mostrarProdutosdaPrat (Prateleiras Prateleira){
+void mostrarProdutosdaPrat (Local Prateleira){
     Produto *aux = Prateleira.comeco;
     while (aux != nullptr){
         std::cout<<"\nID: "<<aux->ID<<" | Produto: "<<aux->objeto<<" | Valor: "<< aux->valordoproduto<<"\n";

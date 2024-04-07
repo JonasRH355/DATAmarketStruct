@@ -27,7 +27,7 @@ int menuprincipal(){
 //   1.2 - PESQUISAR POR PRECO (menor que)
 //   1.3 - PESQUISAR GERAL
 // 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
-bool inserirProdutonocarrinho(Carrinho usuario, Prateleiras camisas){
+bool inserirProdutonocarrinho(Local usuario, Local camisas){
     int idescolhido;
     std::cout<<"\nQual item você deseja inserir no carrinho? ";
     std::cin>>idescolhido;
