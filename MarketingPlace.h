@@ -28,7 +28,7 @@ int menuprincipal(){
 //   1.3 - PESQUISAR GERAL
 // 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
 
-void inserirProdutonocarrinho(Local usuario, Local camisas){
+void inserirProdutonocarrinho(Local &usuario, Local &camisas){
     int idescolhido;
     std::cout<<"\nQual item você deseja inserir no carrinho? ";
     std::cin>>idescolhido;

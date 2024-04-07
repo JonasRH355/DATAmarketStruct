@@ -13,8 +13,7 @@ int main() {
             case 1:
                 break;
             case 2:
-
-                retirardaproduto(prateleira,27);
+                inserirProdutonocarrinho(carrinho,prateleira);
                 break;
             case 3:
                 break;
