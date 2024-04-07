@@ -102,12 +102,13 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
     return true;
 }
 
-void buscarnanaprateleira(Local lista, int idabuscar){
+template<typename parametro>
+bool buscarnanaprateleira(Local lista, parametro idabuscar){
     Produto *encontrar = lista.comeco;
     while(encontrar != nullptr){
         if(idabuscar == encontrar->ID)
         {
-
+            return true;
         }
         else{
             encontrar = encontrar->proximo;

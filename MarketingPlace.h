@@ -22,12 +22,95 @@ int menuprincipal(){
     return x;
 }
 
-// 1- PESQUISAR
+
+// ______________________________1- PESQUISAR___________________________________
+int menupesquisar(){
+    int x=0;
+
+    std::cout<<"_________________________________\n";
+    std::cout<<"        MERCADO DO DOMINUS       \n\n";
+    std::cout<<"1- Pesquisar por Nome\n";
+    std::cout<<"2- Pesquisar por preco (menor que)\n";
+    std::cout<<"3- Pesquisar geral\n";
+    std::cout<<"4- Mostrar todos os produtos\n";
+    std::cout<<"7- SAIR\n\n";
+    std::cout<<"_________________________________";
+    std::cin>>x;
+    return x;
+}
+
+bool pesquisaporNome(Local prateleira){
+    std::string nomeabuscar;
+    std::cout<<"Qual o nome do produto: ";
+    std::cin>>nomeabuscar;
+    Produto *encontrar = prateleira.comeco;
+    while(encontrar != nullptr){
+        if(nomeabuscar == encontrar->nome)
+        {
+            std::cout<<"\nID: "<<encontrar->ID<<" | Produto: "<<encontrar->nome<<" | Valor: "<< encontrar->valordoproduto<<"\n";
+            return true;
+        }
+        else{
+            encontrar = encontrar->proximo;
+        }
+
+    }
+    return false;
+}
+
+bool pesquisamenorque(Local prateleira){
+    float valormaximo = 0;
+    std::cout<<"Qual o valor maximo a pagar: ";
+    std::cin>>valormaximo;
+    Produto *encontrar = prateleira.comeco;
+    std::cout<<"\n\n--------------------------\nPRODUTOS ENCONTRADOS:\n";
+    while(encontrar != nullptr){
+
+        if(valormaximo >= encontrar->valordoproduto)
+        {
+            std::cout<<"\nID: "<<encontrar->ID<<" | Produto: "<<encontrar->nome<<" | Valor: "<< encontrar->valordoproduto<<"\n";
+        }
+
+        if(encontrar->proximo == nullptr){return false;}
+        encontrar = encontrar->proximo;
+
+    }
+    return true;
+}
+
+bool pesquisageral(Local prateleira){}
+
+void pesquisar(Local prateleira){
+    switch (menupesquisar()) {
+        case 1:
+            if(pesquisaporNome(prateleira)){
+                break;
+            }
+            else{
+                std::cout<<"\nNão foi encontrado\n";
+            }
+            break;
+        case 2:
+            pesquisamenorque(prateleira);
+            break;
+        case 3:
+            pesquisageral(prateleira);
+            break;
+        case 4:
+            break;
+        case 7:
+            break;
+    }
+}
+
 //   1.1 - PESQUISAR POR ID
 //   1.2 - PESQUISAR POR PRECO (menor que)
 //   1.3 - PESQUISAR GERAL
 
-// 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
+//_________________________________________________FIM PESQUISAR_______________________________________________
+
+
+// ____________INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO____________________________________________
 void inserirProdutonocarrinho(Local &usuario, Local &camisas){
     int idescolhido;
     std::cout<<"\nQual item você deseja inserir no carrinho? ";
@@ -45,8 +128,10 @@ void inserirProdutonocarrinho(Local &usuario, Local &camisas){
         }
     }
 }
+//_______________________FIM INSERIR__________________________________________________________________________
 
-// 3- RETIRAR UM PRODUTO DO CARRINHO E POR EM UMA PRATELEIRA
+
+// _________________________________RETIRAR UM PRODUTO DO CARRINHO E POR EM UMA PRATELEIRA____________________
 void retirarprodutodocarrinho(Local &usuario, Local &camisas){
     int idescolhido;
     std::cout<<"\nQual item você deseja retirar do carrinho? ";
@@ -64,6 +149,8 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
         }
     }
 }
+//____________________________FIM RETIRAR_____________________________________________________________________
+
 
 // 4-  PAGAR
 // 5- CLIENTE

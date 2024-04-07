@@ -10,7 +10,8 @@ int main() {
 
     while(i != 1){
         switch (menuprincipal()) {
-            case 1:
+            case 1:// 1- PESQUISAR
+                pesquisar(prateleira);
                 break;
 
             case 2: // 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
@@ -21,26 +22,24 @@ int main() {
                 retirarprodutodocarrinho(carrinho,prateleira);
                 break;
 
-            case 4:
+            case 4: // 4-  PAGAR
                 std::cout<<getvalor(carrinho);
                 i++;
                 break;
 
-            case 5:
+            case 5:// 5- CLIENTE
                 mostrarProdutos(carrinho);
                 break;
-                
-            case 6:
+
+            case 6:// 6- GERENTE
                 std::cout<<getvalor(prateleira);
                 mostrarProdutos(prateleira);
                 break;
 
-            case 7:
+            case 7:// SAIR
                 i++;
                 break;
         }
     }
-
-    mostrarProdutos(carrinho);
     return 0;
 }
