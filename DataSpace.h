@@ -1,3 +1,6 @@
+#include <fstream>
+#include <sstream>
+
 // Objetos que estao a venda
 struct Produto {
     Produto *anterior = nullptr;
@@ -128,4 +131,44 @@ void mostrarProdutos (Local Prateleira){
 
 float getvalor(Local listadesejada){
     return listadesejada.valortotal;
+}
+
+void exportarProdutos(const Local& prateleira, const std::string& nomeDoArquivo) {
+
+    std::ofstream arquivo(nomeDoArquivo);
+
+    Produto* atual = prateleira.comeco;
+
+    while (atual != nullptr) {
+        arquivo << "ID: " << atual->ID << " | Produto: " << atual->nome << " | Valor: " << atual->valordoproduto << "\n";
+        atual = atual->proximo;
+    }
+
+    arquivo.close();
+}
+
+void importarProdutos(Local& prateleira, const std::string& nomeDoArquivo) {
+    std::ifstream arquivo(nomeDoArquivo);
+
+    std::string linha;
+    while (getline(arquivo, linha)) {
+        std::istringstream iss(linha);
+        std::string parte;
+        int ID;
+        std::string nome;
+        float valor;
+
+        getline(iss, parte, '|');
+        std::istringstream(parte.substr(parte.find(":") + 2)) >> ID;
+
+        getline(iss, parte, '|');
+        nome = parte.substr(parte.find(":") + 2);
+
+        getline(iss, parte);
+        std::istringstream(parte.substr(parte.find(":") + 2)) >> valor;
+
+        inserirProduto(prateleira, ID, nome, valor);
+    }
+
+    arquivo.close();
 }

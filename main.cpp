@@ -5,8 +5,7 @@ int main() {
     int i = 0;
     Local prateleira;
     Local carrinho;
-    inserirProduto(prateleira,45,"george",45.99);
-    inserirProduto(prateleira,27,"gloria a deus",35.99);
+    importarProdutos(prateleira,"produtossalvos.txt");
 
     while(i != 1){
         switch (menuprincipal()) {
@@ -41,5 +40,6 @@ int main() {
                 break;
         }
     }
+    exportarProdutos(prateleira,"produtossalvos.txt");
     return 0;
 }
