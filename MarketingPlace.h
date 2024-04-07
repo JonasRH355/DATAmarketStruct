@@ -28,24 +28,22 @@ int menuprincipal(){
 //   1.3 - PESQUISAR GERAL
 // 2- INSERIR UM PRODUTO DA PRATELERIA DENTRO DO CARRINHO
 
-bool inserirProdutonocarrinho(Local usuario, Local camisas){
+void inserirProdutonocarrinho(Local usuario, Local camisas){
     int idescolhido;
     std::cout<<"\nQual item você deseja inserir no carrinho? ";
     std::cin>>idescolhido;
     Produto *encontrar = camisas.comeco;
     while(encontrar != nullptr){
-        if(idescolhido == encontrar->ID)
+        if( encontrar->ID == idescolhido)
         {
             inserirProduto(usuario,idescolhido,encontrar->nome,encontrar->valordoproduto);
             retirardaproduto(camisas,idescolhido);
-            return true;
+            break;
         }
         else{
             encontrar = encontrar->proximo;
         }
-
     }
-    return false;
 }
 
 // 3- RETIRAR UM PRODUTO DO CARRINHO E POR EM UMA PRATELEIRA

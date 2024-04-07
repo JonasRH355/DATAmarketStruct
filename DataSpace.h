@@ -21,7 +21,6 @@ bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, fl
     novo->ID = idNovo;
     novo->nome = produntonovo;
     novo->valordoproduto = valordesejado;
-    localdesejado.valortotal = localdesejado.valortotal + valordesejado;
 
     if (localdesejado.comeco == nullptr)
     {

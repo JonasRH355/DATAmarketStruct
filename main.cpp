@@ -5,19 +5,16 @@ int main() {
     int i = 0;
     Local prateleira;
     Local carrinho;
-    inserirProduto(prateleira,45,"gloria a deus",45.99);
+    inserirProduto(prateleira,45,"george",45.99);
+    inserirProduto(prateleira,27,"gloria a deus",35.99);
     inserirProduto(prateleira,27,"gloria a deus",35.99);
     while(i != 1){
         switch (menuprincipal()) {
             case 1:
                 break;
             case 2:
-                if(inserirProdutonocarrinho(carrinho,prateleira)){
-                    std::cout<<"Produto posto no carrinho com sucesso\n";
-                }
-                else{
-                    std::cout<<"não deu botar no carrinho";
-                }
+
+                retirardaproduto(prateleira,27);
                 break;
             case 3:
                 break;
@@ -36,7 +33,7 @@ int main() {
                 break;
         }
     }
-    retirardaproduto(prateleira,45);
-    mostrarProdutos(prateleira);
+
+    mostrarProdutos(carrinho);
     return 0;
 }
