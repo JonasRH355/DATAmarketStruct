@@ -188,8 +188,76 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
 
 
 
-// 4-  PAGAR
+// ________________________________________________4 - PAGAMENTO_________________________________
 
+int menupagamento(){
+    int x=0;
+    std::cout<<"_________________________________\n";
+    std::cout<<"        MERCADO DO DOMINUS       \n\n";
+    std::cout<<"1- Finalizar compra\n";
+    std::cout<<"2- Aplicar Desconto\n";
+    std::cout<<"3- SAIR\n";
+    std::cout<<"_________________________________";
+    std::cin>>x;
+    return x;
+}
+
+
+void pagar(Local carrinho){
+
+    float desconto = 0;
+
+    float valorcarrinho = getvalor(carrinho);
+
+    float valordescontado = valorcarrinho;
+
+    int formadepagamento, valorrecebido;
+
+    if (valorcarrinho > 200) {
+        std::cout << "Parabéns! Você conseguiu 10% de desconto por ter um valor maior do que R$200.\n";
+        desconto = valorcarrinho * 0.1;
+        valordescontado = valorcarrinho - desconto;
+    }
+    std::cout << "Subtotal: " << valorcarrinho << std::endl;
+    std::cout << "Desconto: " << desconto << std::endl;
+    std::cout << "Total: " << valordescontado << std::endl;
+    system("pause");
+    system("cls");
+    std::cout << "Selecione a forma de pagamento: \n"
+                 "1 - Cartão\n"
+                 "2 - Dinheiro\n"
+                 "3 - Pix\n";
+    std::cin >> formadepagamento;
+
+    switch (formadepagamento) {
+        case 1:
+            system("cls");
+            std::cout << "Obrigado pela sua compra!" << std::endl;
+            system("pause");
+            break;
+
+        case 2:
+            std::cout << "Digite o valor recebido pelo cliente: ";
+            std::cin >> valorrecebido;
+            std::cout << "Troco a ser entregue para o cliente: " << valorrecebido - valordescontado << std::endl;
+            system("pause");
+            system("cls");
+            std::cout << "Obrigado pela sua compra!" << std::endl;
+            system("pause");
+            break;
+
+        case 3:
+            system("cls");
+            std::cout << "Obrigado pela sua compra!" << std::endl;
+            system("pause");
+            break;
+
+    }
+
+
+}
+
+// _________________________________FIM MENU DO PAGAMENTO_______________________________________________
 // ________________________________________________5 -MENU DO CLIENTE_________________________________
 int menucliente(){
     int x=0;
