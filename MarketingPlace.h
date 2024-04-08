@@ -1,9 +1,5 @@
-// quantidades disponíveis e descontos, dentre outras que você julgar necessário.
-// pesquisar, verificar valores, reajustar preços, remover produtos do estoque, controlar
 #include "DataSpace.h"
-
-// OBS: MANTER OS RECURSOS DAS LISTAS EM UM ARQUIVO eternos.
-// OBS2: FAZER COM QUE TENHA DESCONTO
+#include <string>
 
 int menuprincipal(){
     int x=0;
@@ -21,7 +17,6 @@ int menuprincipal(){
     std::cin>>x;
     return x;
 }
-
 
 // ______________________________1- PESQUISAR___________________________________
 int menupesquisar(){
@@ -42,7 +37,8 @@ int menupesquisar(){
 bool pesquisaporNome(Local prateleira){
     std::string nomeabuscar;
     std::cout<<"Qual o nome do produto: ";
-    std::cin>>nomeabuscar;
+    std::cin.ignore();
+    std::getline(std::cin,nomeabuscar);
     Produto *encontrar = prateleira.comeco;
     while(encontrar != nullptr){
         if(nomeabuscar == encontrar->nome)
@@ -82,7 +78,8 @@ bool pesquisageral(Local prateleira){
     std::string nomeabuscar;
     float valorbuscar=0;
     std::cout<<"Qual o nome do produto: ";
-    std::cin>>nomeabuscar;
+    std::cin.ignore();
+    std::getline(std::cin,nomeabuscar);
     std::cout<<"Qual o valor maximo dele:";
     std::cin>> valorbuscar;
     Produto *encontrar = prateleira.comeco;
@@ -124,6 +121,7 @@ void pesquisar(Local prateleira){
             mostrarProdutos(prateleira);
             break;
         case 7:
+            system("cls");
             break;
     }
 }
@@ -173,13 +171,89 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
 //____________________________FIM RETIRAR_____________________________________________________________________
 
 
-// 4-  PAGAR
-// 5- CLIENTE
-//  5.1- CALCULAR CARRINHO
-//  5.2- MOSTRAR ITENS DO CARRINHO
-//  5.3- Cupons de desconto
-// 6- GERENTE
-//  6.1 - ajustar produto;
-//  6.2 - inserir novo produto;
-//  6.3 - retirar produto da prateleira
+// ________________________________________________5 -MENU DO CLIENTE_________________________________
+int menucliente(){
+    int x=0;
+    std::cout<<"_________________________________\n";
+    std::cout<<"        MERCADO DO DOMINUS       \n\n";
+    std::cout<<"1- Calcular Carrinho\n";
+    std::cout<<"2- Mostrar Itens do Carrinho\n";
+    std::cout<<"3- SAIR\n";
+    std::cout<<"_________________________________";
+    std::cin>>x;
+    return x;
+}
 
+void cliente(Local carrinho){
+    switch (menucliente()) {
+        case 1:
+            std::cout << "O valor do seu carrinho: R$" << getvalor(carrinho) << std::endl;
+            break;
+        case 3:
+            break;
+        case 2:
+            std::cout << "Produtos no carrinho: \n";
+            Produto *aux = carrinho.comeco;
+            if (aux != nullptr) {
+                mostrarProdutos(carrinho);
+            } else {
+                std::cout << "Seu carrinho está vazio!\n";
+            }
+
+            break;
+
+    }
+}
+// _________________________________FIM MENU DO CLIENTE_______________________________________________
+
+
+// ________________________________________6 -MENU DO GERENTE_________________________________________
+int menugerente(){
+    int x=0;
+    std::cout<<"_________________________________\n";
+    std::cout<<"        MERCADO DO DOMINUS       \n\n";
+    std::cout<<"1- Ajustar Preço de Produto\n";
+    std::cout<<"2- Inserir Novo Produto\n";
+    std::cout<<"3- Retirar Produto\n";
+    std::cout<<"4- SAIR\n";
+    std::cout<<"_________________________________";
+    std::cin>>x;
+    return x;
+}
+
+void gerente(Local prateleira){
+    switch (menugerente()) {
+        case 1:
+            int idproduto;
+            std::cout << "Digite o ID do produto que você deseja alterar o valor: ";
+            std::cin >> idproduto;
+            alterarPreco(prateleira, idproduto);
+            break;
+
+        case 3:
+            int idescolhido;
+            std::cout<<"\nDigite o ID do item você deseja retirar da prateleira: ";
+            std::cin>>idescolhido;
+            retirardaproduto(prateleira, idescolhido);
+            std::cout<<"\nO produto com ID " << idescolhido << " foi removido da prateleira!\n";
+            break;
+
+        case 4:
+            break;
+
+        case 2:
+            int id;
+            std::string nome;
+            float valor;
+            std::cout << "Digite o ID do produto: ";
+            std::cin >> id;
+            std::cout << "Digite o Nome do produto: ";
+            std::cin.ignore();
+            getline(std::cin, nome);
+            std::cout << "Digite o Preço do produto: ";
+            std::cin >> valor;
+            inserirProduto(prateleira, id, nome, valor);
+            break;
+    }
+}
+// _________________________________FIM MENU DO GERENTE_______________________________________________
