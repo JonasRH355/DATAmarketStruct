@@ -1,0 +1,4 @@
+ID: 1 | Produto: Camisa azul     | Valor: 78.9
+ID: 2 | Produto: Camisa vermelha     | Valor: 34.99
+ID: 3 | Produto: Meia rosa  | Valor: 34.99
+ID: 4 | Produto: Boné preto     | Valor: 34.99

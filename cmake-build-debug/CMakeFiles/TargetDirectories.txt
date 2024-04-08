@@ -1,0 +1,3 @@
+C:/Users/leona/OneDrive/Documentos/estudos/DATAmarketStruct/cmake-build-debug/CMakeFiles/DATAmarketStruct.dir
+C:/Users/leona/OneDrive/Documentos/estudos/DATAmarketStruct/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/leona/OneDrive/Documentos/estudos/DATAmarketStruct/cmake-build-debug/CMakeFiles/rebuild_cache.dir

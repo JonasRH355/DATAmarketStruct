@@ -32,10 +32,7 @@ int main() {
                 break;
 
             case 4: // 4-  PAGAR
-                system("cls");
-                std::cout<<"Valor total:"<<getvalor(carrinho)<<"\nVendedor: "<<vendedor;
-                mostrarProdutos(carrinho);
-                i++;
+                pagar(carrinho);
                 break;
 
             case 5:// 5- CLIENTE
@@ -44,7 +41,9 @@ int main() {
                 break;
 
             case 6:// 6- GERENTE
+
                 system("cls");
+
                 gerente(prateleira);
                 break;
 

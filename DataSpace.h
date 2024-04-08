@@ -109,13 +109,14 @@ void alterarPreco(Local lista, int idabuscar){
         {
             float novovalor = 0;
             std::cout << "\nID do produto:" << encontrar->ID << std::endl
-                      << "Nome do produto:" << encontrar->nome << std::endl
-                      << "Valor do produto: " << encontrar->valordoproduto << std::endl
-                      << "Novo valor do produto: ";
+            << "Nome do produto:" << encontrar->nome << std::endl
+            << "Valor do produto: " << encontrar->valordoproduto << std::endl
+            << "Novo valor do produto: ";
             std::cin>>novovalor;
             encontrar->valordoproduto = novovalor;
             system("cls");
             break;
+
         }
         else{
             encontrar = encontrar->proximo;
