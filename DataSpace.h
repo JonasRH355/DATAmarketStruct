@@ -1,7 +1,6 @@
 #include <fstream>
 #include <sstream>
 
-// Objetos que estao a venda
 struct Produto {
     Produto *anterior = nullptr;
     int ID;
@@ -10,7 +9,6 @@ struct Produto {
     Produto * proximo = nullptr;
 };
 
-// locas a ser posto os produtos (linha)
 struct Local{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;
@@ -18,7 +16,6 @@ struct Local{
     float valortotal = 0;
 };
 
-//Função para inserir um novo no na lista (produto na prateleira)
 bool inserirProduto(Local &localdesejado,int idNovo,std::string produntonovo, float valordesejado){
     Produto *novo = new Produto;
     novo->ID = idNovo;
@@ -105,13 +102,17 @@ bool retirardaproduto(Local &localdesejado, int idDesejado){
     return true;
 }
 
-template<typename parametro>
-bool buscarnanaprateleira(Local lista, parametro idabuscar){
+void alterarPreco(Local lista, int idabuscar){
     Produto *encontrar = lista.comeco;
     while(encontrar != nullptr){
         if(idabuscar == encontrar->ID)
         {
-            return true;
+            float novovalor = 0;
+            std::cout << "\nID do produto:" << encontrar->ID << std::endl
+            << "Nome do produto:" << encontrar->nome << std::endl
+            << "Valor do produto: " << encontrar->valordoproduto << std::endl
+            << "Novo valor do produto: " << novovalor;
+            encontrar->valordoproduto = novovalor;
         }
         else{
             encontrar = encontrar->proximo;
@@ -120,13 +121,13 @@ bool buscarnanaprateleira(Local lista, parametro idabuscar){
     }
 }
 
-//mostra todos os produtos da prateleira escolhida
 void mostrarProdutos (Local Prateleira){
     Produto *aux = Prateleira.comeco;
     while (aux != nullptr){
         std::cout<<"\nID: "<<aux->ID<<" | Produto: "<<aux->nome<<" | Valor: "<< aux->valordoproduto<<"\n";
         aux= aux->proximo;
     }
+
 }
 
 float getvalor(Local listadesejada){

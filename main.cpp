@@ -7,6 +7,11 @@ int main() {
     Local carrinho;
     std::string vendedor = "felix";
     importarProdutos(prateleira,"produtossalvos.txt");
+    inserirProduto(prateleira, 1, "Camisa azul", 34.99);
+    inserirProduto(prateleira, 2, "Camisa vermelha", 34.99);
+    inserirProduto(prateleira, 3, "Meia rosa", 34.99);
+    inserirProduto(prateleira, 4, "Boné preto", 34.99);
+
 
     while(i != 1){
         switch (menuprincipal()) {
@@ -29,12 +34,11 @@ int main() {
                 break;
 
             case 5:// 5- CLIENTE
-                mostrarProdutos(carrinho);
+                cliente(carrinho);
                 break;
 
             case 6:// 6- GERENTE
-                std::cout<<getvalor(prateleira);
-                mostrarProdutos(prateleira);
+                gerente(prateleira);
                 break;
 
             case 7:// SAIR
