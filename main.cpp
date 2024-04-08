@@ -1,6 +1,8 @@
 #include <iostream>
 #include "MarketingPlace.h"
 
+// Jônatas Régis Hellmann e Leonardo de Borba  Cardoso
+
 int main() {
     int i = 0;
     Local prateleira;
