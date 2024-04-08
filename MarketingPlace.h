@@ -246,7 +246,7 @@ int menugerente(){
     return x;
 }
 
-void gerente(Local prateleira){
+void gerente(Local &prateleira){
     switch (menugerente()) {
         case 1:
             int idproduto;
@@ -267,17 +267,14 @@ void gerente(Local prateleira){
             break;
 
         case 2:
-            int id;
             std::string nome;
             float valor;
-            std::cout << "Digite o ID do produto: ";
-            std::cin >> id;
             std::cout << "Digite o Nome do produto: ";
             std::cin.ignore();
             getline(std::cin, nome);
             std::cout << "Digite o Preço do produto: ";
             std::cin >> valor;
-            inserirProduto(prateleira, id, nome, valor);
+            inserirProduto(prateleira, (prateleira.tamanho+1), nome, valor);
             break;
     }
 }
