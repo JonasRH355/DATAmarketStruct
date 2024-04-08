@@ -9,6 +9,12 @@ struct Produto {
     Produto * proximo = nullptr;
 };
 
+struct vendas{
+    float valor;
+    float desconto;
+    int formasdepagamento;
+};
+
 struct Local{
     Produto *comeco = nullptr;
     Produto *fim = nullptr;

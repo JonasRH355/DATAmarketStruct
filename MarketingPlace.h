@@ -1,11 +1,6 @@
 #include "DataSpace.h"
 #include <string>
 
-
-// OBS: MANTER OS RECURSOS DAS LISTAS EM UM ARQUIVO eternos.
-// OBS2: FAZER COM QUE TENHA DESCONTO
-
-
 int menuprincipal(){
     int x=0;
 
@@ -134,14 +129,6 @@ void pesquisar(Local prateleira){
             break;
     }
 }
-
-
-
-//   1.1 - PESQUISAR POR ID
-//   1.2 - PESQUISAR POR PRECO (menor que)
-//   1.3 - PESQUISAR GERAL
-
-
 //_________________________________________________FIM PESQUISAR_______________________________________________
 
 
@@ -190,36 +177,22 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
 
 // ________________________________________________4 - PAGAMENTO_________________________________
 
-int menupagamento(){
-    int x=0;
-    std::cout<<"_________________________________\n";
-    std::cout<<"        MERCADO DO DOMINUS       \n\n";
-    std::cout<<"1- Finalizar compra\n";
-    std::cout<<"2- Aplicar Desconto\n";
-    std::cout<<"3- SAIR\n";
-    std::cout<<"_________________________________";
-    std::cin>>x;
-    return x;
-}
-
-
 void pagar(Local carrinho){
+    vendas venda;
+    venda.valor = getvalor(carrinho);
 
-    float desconto = 0;
+    float valordescontado = venda.valor;
 
-    float valorcarrinho = getvalor(carrinho);
+    int  valorrecebido;
 
-    float valordescontado = valorcarrinho;
 
-    int formadepagamento, valorrecebido;
-
-    if (valorcarrinho > 200) {
+    if (venda.valor > 200) {
         std::cout << "Parabéns! Você conseguiu 10% de desconto por ter um valor maior do que R$200.\n";
-        desconto = valorcarrinho * 0.1;
-        valordescontado = valorcarrinho - desconto;
+        venda.desconto = venda.valor * 0.1;
+        valordescontado = venda.valor - venda.desconto;
     }
-    std::cout << "Subtotal: " << valorcarrinho << std::endl;
-    std::cout << "Desconto: " << desconto << std::endl;
+    std::cout << "Subtotal: " << venda.valor << std::endl;
+    std::cout << "Desconto: " << venda.desconto << std::endl;
     std::cout << "Total: " << valordescontado << std::endl;
     system("pause");
     system("cls");
@@ -227,9 +200,9 @@ void pagar(Local carrinho){
                  "1 - Cartão\n"
                  "2 - Dinheiro\n"
                  "3 - Pix\n";
-    std::cin >> formadepagamento;
+    std::cin >> venda.formasdepagamento;
 
-    switch (formadepagamento) {
+    switch (venda.formasdepagamento) {
         case 1:
             system("cls");
             std::cout << "Obrigado pela sua compra!" << std::endl;
@@ -258,6 +231,8 @@ void pagar(Local carrinho){
 }
 
 // _________________________________FIM MENU DO PAGAMENTO_______________________________________________
+
+
 // ________________________________________________5 -MENU DO CLIENTE_________________________________
 int menucliente(){
     int x=0;
@@ -291,11 +266,6 @@ void cliente(Local carrinho){
 
     }
 }
-
-
-//  5.1- CALCULAR CARRINHO
-//  5.2- MOSTRAR ITENS DO CARRINHO
-
 // _________________________________FIM MENU DO CLIENTE_______________________________________________
 
 
@@ -346,9 +316,4 @@ void gerente(Local &prateleira){
             break;
     }
 }
-
-
-//  6.1 - ajustar produto;
-//  6.2 - inserir novo produto;
-
 // _________________________________FIM MENU DO GERENTE_______________________________________________
