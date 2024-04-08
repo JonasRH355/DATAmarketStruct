@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MarketingPlace.h"
 
+
 int main() {
     int i = 0;
     Local prateleira;
@@ -9,6 +10,7 @@ int main() {
     importarProdutos(prateleira,"produtossalvos.txt");
 
     while(i != 1){
+        system("cls");
         switch (menuprincipal()) {
             case 1:// 1- PESQUISAR
                 pesquisar(prateleira);
@@ -41,7 +43,9 @@ int main() {
                 i++;
                 break;
         }
+
     }
+
     exportarProdutos(prateleira,"produtossalvos.txt");
     return 0;
 }

@@ -78,7 +78,27 @@ bool pesquisamenorque(Local prateleira){
     return true;
 }
 
-bool pesquisageral(Local prateleira){}
+bool pesquisageral(Local prateleira){
+    std::string nomeabuscar;
+    float valorbuscar=0;
+    std::cout<<"Qual o nome do produto: ";
+    std::cin>>nomeabuscar;
+    std::cout<<"Qual o valor maximo dele:";
+    std::cin>> valorbuscar;
+    Produto *encontrar = prateleira.comeco;
+    while(encontrar != nullptr){
+        if(nomeabuscar == encontrar->nome && valorbuscar >= encontrar->valordoproduto)
+        {
+            std::cout<<"\nID: "<<encontrar->ID<<" | Produto: "<<encontrar->nome<<" | Valor: "<< encontrar->valordoproduto<<"\n";
+            return true;
+        }
+        else{
+            encontrar = encontrar->proximo;
+        }
+
+    }
+    return false;
+}
 
 void pesquisar(Local prateleira){
     switch (menupesquisar()) {
@@ -94,18 +114,19 @@ void pesquisar(Local prateleira){
             pesquisamenorque(prateleira);
             break;
         case 3:
-            pesquisageral(prateleira);
+            if (pesquisageral(prateleira)){
+                break;
+            }else{
+                std::cout<<"\nNão foi encontrado\n";
+            }
             break;
         case 4:
+            mostrarProdutos(prateleira);
             break;
         case 7:
             break;
     }
 }
-
-//   1.1 - PESQUISAR POR ID
-//   1.2 - PESQUISAR POR PRECO (menor que)
-//   1.3 - PESQUISAR GERAL
 
 //_________________________________________________FIM PESQUISAR_______________________________________________
 
@@ -156,7 +177,9 @@ void retirarprodutodocarrinho(Local &usuario, Local &camisas){
 // 5- CLIENTE
 //  5.1- CALCULAR CARRINHO
 //  5.2- MOSTRAR ITENS DO CARRINHO
+//  5.3- Cupons de desconto
 // 6- GERENTE
 //  6.1 - ajustar produto;
 //  6.2 - inserir novo produto;
+//  6.3 - retirar produto da prateleira
 
