@@ -1,2 +1,2 @@
 # DATAmarketStruct
- Banco de dados para uma loja
+ Estrutura de dados para uma loja
