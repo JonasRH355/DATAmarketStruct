@@ -35,6 +35,7 @@ int main() {
 
             case 4: // 4-  PAGAR
                 pagar(carrinho);
+                i++;
                 break;
 
             case 5:// 5- CLIENTE

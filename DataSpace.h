@@ -178,7 +178,7 @@ void importarProdutos(Local& prateleira, const std::string& nomeDoArquivo) {
         getline(iss, parte);
         std::istringstream(parte.substr(parte.find(":") + 2)) >> valor;
 
-        inserirProduto(prateleira, ID, nome, valor);
+        inserirProduto(prateleira, (prateleira.tamanho+1), nome, valor);
     }
 
     arquivo.close();
